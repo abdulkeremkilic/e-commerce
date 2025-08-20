@@ -3,7 +3,7 @@ package org.abdulkerem.ecommerce.controller;
 import lombok.RequiredArgsConstructor;
 import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
 import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
-import org.abdulkerem.ecommerce.service.abstracts.CustomerService;
+import org.abdulkerem.ecommerce.service.abstracts.ICustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final ICustomerService customerService;
 
     @PostMapping("createCustomer")
     public ResponseEntity<String> createCustomer(@RequestBody @Validated CustomerRequest request) {

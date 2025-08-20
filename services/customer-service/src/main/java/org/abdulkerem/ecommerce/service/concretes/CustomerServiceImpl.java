@@ -2,12 +2,12 @@ package org.abdulkerem.ecommerce.service.concretes;
 
 import lombok.RequiredArgsConstructor;
 import org.abdulkerem.ecommerce.exceptions.CustomerNotFoundException;
-import org.abdulkerem.ecommerce.mapper.CustomerRequestToCustomerEntityMapper;
-import org.abdulkerem.ecommerce.model.customer.CustomerEntity;
+import org.abdulkerem.ecommerce.mapper.CustomerMapper;
+import org.abdulkerem.ecommerce.model.entity.CustomerEntity;
 import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
 import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
 import org.abdulkerem.ecommerce.repository.CustomerRepository;
-import org.abdulkerem.ecommerce.service.abstracts.CustomerService;
+import org.abdulkerem.ecommerce.service.abstracts.ICustomerService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,10 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerServiceImpl implements CustomerService {
+public class CustomerServiceImpl implements ICustomerService {
 
     private final CustomerRepository customerRepository;
-    private final CustomerRequestToCustomerEntityMapper customerMapper;
+    private final CustomerMapper customerMapper;
 
     @Override
     public String createCustomer(CustomerRequest customerRequest) {

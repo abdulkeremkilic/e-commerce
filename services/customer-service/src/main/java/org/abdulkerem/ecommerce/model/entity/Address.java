@@ -1,4 +1,4 @@
-package org.abdulkerem.ecommerce.model.customer;
+package org.abdulkerem.ecommerce.model.entity;
 
 import lombok.*;
 import org.springframework.validation.annotation.Validated;

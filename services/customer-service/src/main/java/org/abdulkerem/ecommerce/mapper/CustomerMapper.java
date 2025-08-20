@@ -1,6 +1,6 @@
 package org.abdulkerem.ecommerce.mapper;
 
-import org.abdulkerem.ecommerce.model.customer.CustomerEntity;
+import org.abdulkerem.ecommerce.model.entity.CustomerEntity;
 import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
 import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
-public class CustomerRequestToCustomerEntityMapper {
+public class CustomerMapper {
     public CustomerEntity requestToCustomerEntity(CustomerRequest customerRequest) {
         if (Objects.isNull(customerRequest))
             return null;

@@ -2,7 +2,7 @@ package org.abdulkerem.ecommerce.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import org.abdulkerem.ecommerce.model.customer.Address;
+import org.abdulkerem.ecommerce.model.entity.Address;
 
 public record CustomerRequest(
         String id,

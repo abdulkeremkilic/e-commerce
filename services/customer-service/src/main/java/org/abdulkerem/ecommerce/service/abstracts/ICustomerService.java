@@ -5,7 +5,7 @@ import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
 
 import java.util.List;
 
-public interface CustomerService {
+public interface ICustomerService {
     String createCustomer(CustomerRequest customerRequest);
 
     void updateCustomer(CustomerRequest request);
