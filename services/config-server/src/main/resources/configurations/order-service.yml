@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: MyHikariPool
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 600000      # 10 dk
+      max-lifetime: 1800000     # 30 dk
+      connection-timeout: 20000 # 20s
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  server:
+    port: 8070
+
+  application:
+    config:
+      customer-server: http://localhost:8222/api/v1/customer
+      product-server: http://localhost:8222/api/v1/product
+      payment-server: http://localhost:8222/api/v1/payment

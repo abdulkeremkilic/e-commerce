@@ -11,4 +11,6 @@ public interface ICustomerService {
     void updateCustomer(CustomerRequest request);
 
     List<CustomerResponse> inquireAllCustomers();
+
+    CustomerResponse inquireCustomerByCustomerId(String customerId);
 }

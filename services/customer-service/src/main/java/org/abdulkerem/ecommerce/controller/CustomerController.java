@@ -28,6 +28,11 @@ public class CustomerController {
         return ResponseEntity.accepted().build();
     }
 
+    @GetMapping("/{customerId}")
+    public ResponseEntity<CustomerResponse> inquireCustomerByCustomerId(@PathVariable("customerId") String customerId) {
+        return ResponseEntity.ok(customerService.inquireCustomerByCustomerId(customerId));
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<List<CustomerResponse>> findAllCustomers() {
         return ResponseEntity.ok(customerService.inquireAllCustomers());

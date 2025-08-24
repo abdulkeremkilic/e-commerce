@@ -1,3 +1,4 @@
+#All other yml files will inherit this one.
 eureka:
   instance:
     hostname: localhost

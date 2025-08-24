@@ -44,6 +44,13 @@ public class CustomerServiceImpl implements ICustomerService {
                 .toList();
     }
 
+    @Override
+    public CustomerResponse inquireCustomerByCustomerId(String customerId) {
+        return this.customerRepository.findById(customerId)
+                .map(customerMapper::customerEntityToCustomerResponse)
+                .orElseThrow(() -> new CustomerNotFoundException(String.format("Customer not found %s", customerId)));
+    }
+
     private void updateCustomer(CustomerRequest customerRequest, CustomerEntity customerEntity) {
         if(StringUtils.isNotBlank(customerRequest.firstName()))
             customerEntity.setFirstName(customerRequest.firstName());
