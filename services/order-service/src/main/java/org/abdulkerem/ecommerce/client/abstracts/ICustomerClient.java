@@ -1,4 +1,4 @@
-package org.abdulkerem.ecommerce.client;
+package org.abdulkerem.ecommerce.client.abstracts;
 
 import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
