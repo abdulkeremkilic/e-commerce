@@ -13,7 +13,7 @@ public record OrderRequest(
     Long custOrdId,
     String reference,
     @Positive(message = "Amount should be positive.")
-    BigDecimal amount,
+    BigDecimal total,
     @NotNull(message = "Payment method should be precised.")
     PaymentMethod paymentMethod,
     @NotNull(message = "Customer should be present.")

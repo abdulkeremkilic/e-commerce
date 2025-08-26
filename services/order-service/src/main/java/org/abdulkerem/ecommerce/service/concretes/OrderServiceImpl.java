@@ -4,8 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.abdulkerem.ecommerce.client.abstracts.ICustomerClient;
 import org.abdulkerem.ecommerce.client.abstracts.IProductClient;
 import org.abdulkerem.ecommerce.exceptions.BusinessValidationException;
+import org.abdulkerem.ecommerce.mapper.CustomerOrderMapper;
 import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
+import org.abdulkerem.ecommerce.model.dto.order.OrderLineRequest;
 import org.abdulkerem.ecommerce.model.dto.order.OrderRequest;
+import org.abdulkerem.ecommerce.model.dto.order.PurchaseRequest;
+import org.abdulkerem.ecommerce.model.entity.CustomerOrderEntity;
+import org.abdulkerem.ecommerce.repository.OrderRepository;
+import org.abdulkerem.ecommerce.service.abstracts.IOrderLineService;
 import org.abdulkerem.ecommerce.service.abstracts.IOrderService;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +21,9 @@ public class OrderServiceImpl implements IOrderService {
 
     private final ICustomerClient customerClient;
     private final IProductClient productClient;
+    private final OrderRepository orderRepository;
+    private final CustomerOrderMapper customerOrderMapper;
+    private final IOrderLineService orderLineService;
 
     @Override
     public Long createOrder(OrderRequest request) {
@@ -26,6 +35,18 @@ public class OrderServiceImpl implements IOrderService {
         this.productClient.purchaseProduct(request.productList());
 
         //persist order
+        CustomerOrderEntity customerOrderEntity = this.orderRepository.save(this.customerOrderMapper.toCustomerOrderEntity(request));
+
+        for (PurchaseRequest purchaseRequest : request.productList()) {
+            orderLineService.persistOrderLine(
+                    OrderLineRequest.builder()
+                            .customerOrderId(customerOrderEntity.getCustomerOrderId())
+                            .productId(purchaseRequest.productId())
+                            .quantity(purchaseRequest.quantity())
+                            .build()
+            );
+        }
+
 
         //persist order lines
 

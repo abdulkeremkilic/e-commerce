@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Service
 public class CustomerMapper {
-    public CustomerEntity requestToCustomerEntity(CustomerRequest customerRequest) {
+    public CustomerEntity toCustomerEntity(CustomerRequest customerRequest) {
         if (Objects.isNull(customerRequest))
             return null;
 
@@ -23,7 +23,7 @@ public class CustomerMapper {
                 .build();
     }
 
-    public CustomerResponse customerEntityToCustomerResponse(CustomerEntity customerEntity) {
+    public CustomerResponse toCustomerResponse(CustomerEntity customerEntity) {
         return new CustomerResponse(
                 customerEntity.getId(),
                 customerEntity.getFirstName(),

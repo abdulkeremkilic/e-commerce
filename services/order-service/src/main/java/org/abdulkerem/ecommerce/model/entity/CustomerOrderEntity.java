@@ -1,6 +1,5 @@
 package org.abdulkerem.ecommerce.model.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.abdulkerem.ecommerce.model.enums.PaymentMethod;
@@ -23,7 +22,7 @@ import java.util.List;
 public class CustomerOrderEntity {
     @Id
     @GeneratedValue
-    private Long cust_ord_id;
+    private Long customerOrderId;
     private String reference;
     private BigDecimal total;
     @Enumerated(EnumType.STRING)

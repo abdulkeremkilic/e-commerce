@@ -26,13 +26,13 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Long createProduct(ProductRequest request) {
-        ProductEntity productEntity = this.productMapper.productRequestToProductEntity(request);
+        ProductEntity productEntity = this.productMapper.toProductEntity(request);
        return productRepository.save(productEntity).getProductId();
     }
 
     public ProductResponse getProductById(Long productId) {
         return this.productRepository.findById(productId)
-                .map(this.productMapper::productEntityToProductResponse)
+                .map(this.productMapper::toProductResponse)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Product not found with the id: %s", productId)));
     }
 
@@ -65,7 +65,7 @@ public class ProductServiceImpl implements IProductService {
             productEntity.setAvailableQuantity(newAvailableQuantity);
             productRepository.save(productEntity);
 
-            purchasedProductList.add(this.productMapper.productEntityToProductPurchaseResponse(productEntity, productPurchaseRequest.quantity()));
+            purchasedProductList.add(this.productMapper.toProductPurchaseResponse(productEntity, productPurchaseRequest.quantity()));
         }
 
         return purchasedProductList;

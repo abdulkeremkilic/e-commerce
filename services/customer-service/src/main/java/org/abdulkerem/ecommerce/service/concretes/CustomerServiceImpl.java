@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public String createCustomer(CustomerRequest customerRequest) {
         //Todo: Null value should not be saved!
-        CustomerEntity customerEntity = customerRepository.save(customerMapper.requestToCustomerEntity(customerRequest));
+        CustomerEntity customerEntity = customerRepository.save(customerMapper.toCustomerEntity(customerRequest));
         return customerEntity.getId();
     }
 
@@ -40,14 +40,14 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<CustomerResponse> inquireAllCustomers() {
         return this.customerRepository.findAll()
                 .stream()
-                .map(customerMapper::customerEntityToCustomerResponse)
+                .map(customerMapper::toCustomerResponse)
                 .toList();
     }
 
     @Override
     public CustomerResponse inquireCustomerByCustomerId(String customerId) {
         return this.customerRepository.findById(customerId)
-                .map(customerMapper::customerEntityToCustomerResponse)
+                .map(customerMapper::toCustomerResponse)
                 .orElseThrow(() -> new CustomerNotFoundException(String.format("Customer not found %s", customerId)));
     }
 
