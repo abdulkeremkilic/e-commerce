@@ -1,4 +1,4 @@
-package org.abdulkerem.ecommerce.model.dto;
+package org.abdulkerem.ecommerce.model.dto.customer;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

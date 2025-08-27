@@ -1,8 +1,8 @@
 package org.abdulkerem.ecommerce.mapper;
 
 import org.abdulkerem.ecommerce.model.entity.CustomerEntity;
-import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
-import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerRequest;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

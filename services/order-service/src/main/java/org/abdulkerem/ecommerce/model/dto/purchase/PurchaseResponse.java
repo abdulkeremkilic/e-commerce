@@ -1,4 +1,4 @@
-package org.abdulkerem.ecommerce.model.dto.order;
+package org.abdulkerem.ecommerce.model.dto.purchase;
 
 import java.math.BigDecimal;
 

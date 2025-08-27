@@ -1,4 +1,4 @@
-package org.abdulkerem.ecommerce.model.dto.order;
+package org.abdulkerem.ecommerce.model.dto.order_line;
 
 import lombok.Builder;
 

@@ -1,7 +1,7 @@
 package org.abdulkerem.ecommerce.client.abstracts;
 
-import org.abdulkerem.ecommerce.model.dto.order.PurchaseRequest;
-import org.abdulkerem.ecommerce.model.dto.order.PurchaseResponse;
+import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseRequest;
+import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseResponse;
 
 import java.util.List;
 

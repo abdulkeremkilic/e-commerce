@@ -1,7 +1,7 @@
 package org.abdulkerem.ecommerce.service.abstracts;
 
-import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
-import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerRequest;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
 
 import java.util.List;
 

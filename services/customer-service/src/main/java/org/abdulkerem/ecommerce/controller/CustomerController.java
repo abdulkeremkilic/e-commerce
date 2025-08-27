@@ -1,8 +1,8 @@
 package org.abdulkerem.ecommerce.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.abdulkerem.ecommerce.model.dto.CustomerRequest;
-import org.abdulkerem.ecommerce.model.dto.CustomerResponse;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerRequest;
+import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
 import org.abdulkerem.ecommerce.service.abstracts.ICustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

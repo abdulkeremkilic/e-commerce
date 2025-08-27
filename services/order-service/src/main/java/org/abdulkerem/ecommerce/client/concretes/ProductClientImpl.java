@@ -3,8 +3,9 @@ package org.abdulkerem.ecommerce.client.concretes;
 import lombok.RequiredArgsConstructor;
 import org.abdulkerem.ecommerce.client.abstracts.IProductClient;
 import org.abdulkerem.ecommerce.exceptions.BusinessValidationException;
-import org.abdulkerem.ecommerce.model.dto.order.PurchaseRequest;
-import org.abdulkerem.ecommerce.model.dto.order.PurchaseResponse;
+import org.abdulkerem.ecommerce.model.dto.ApplicationConfig;
+import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseRequest;
+import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -20,8 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductClientImpl implements IProductClient {
 
-    @Value("${application.config.product-service-url}")
-    private String serviceUrl;
+    private final ApplicationConfig applicationConfig;
     private final RestTemplate restTemplate;
 
     @Override
@@ -34,7 +34,7 @@ public class ProductClientImpl implements IProductClient {
         ParameterizedTypeReference<List<PurchaseResponse>> responseType = new ParameterizedTypeReference<List<PurchaseResponse>>() {};
 
         ResponseEntity<List<PurchaseResponse>> responseEntity = restTemplate.exchange(
-                serviceUrl + "/purchase",
+                applicationConfig.productServiceUrl() + "/purchase",
                 HttpMethod.POST,
                 requestEntity,
                 responseType

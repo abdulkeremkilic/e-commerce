@@ -15,12 +15,19 @@ spring:
     hibernate:
       ddl-auto: create
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # You can create your own implementation of JsonSerializer and use it.
+      properties:
+        spring.json.type.mapping: orderConfirmation:org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation # producer needs to inform consumer of our topic what objects is being sent
 
   server:
     port: 8070
 
   application:
     config:
-      customer-server: http://localhost:8222/api/v1/customer
-      product-server: http://localhost:8222/api/v1/product
-      payment-server: http://localhost:8222/api/v1/payment
+      customer-server-url: http://localhost:8222/api/v1/customer
+      product-server-url: http://localhost:8222/api/v1/product
+      payment-server-url: http://localhost:8222/api/v1/payment
