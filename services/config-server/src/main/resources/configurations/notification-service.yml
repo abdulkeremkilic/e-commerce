@@ -1,0 +1,37 @@
+spring:
+  mail:
+    host: localhost
+    port: 1025
+    username: admin
+    password: admin
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+
+  data:
+    mongodb:
+      username: admin
+      password: admin
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup, orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer # You can create your own implementation of JsonSerializer and use it.
+      properties:
+        spring.json.trusted.packages: "org.abdulkerem.ecommerce.model.dto.kafka" # only accept types in these packages, write "*" if you want to accept every package.
+        spring.json.type.mapping: orderConfirmation:org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation, PaymentNotificationRequest # producer needs to inform consumer of our topic what objects is being sent
