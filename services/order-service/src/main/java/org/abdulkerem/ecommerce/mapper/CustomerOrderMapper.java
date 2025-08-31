@@ -10,7 +10,7 @@ public class CustomerOrderMapper {
     public CustomerOrderEntity toCustomerOrderEntity(OrderRequest orderRequest) {
         return CustomerOrderEntity.builder()
                 .customerId(orderRequest.customerId())
-                .reference(orderRequest.reference())
+                .reference(orderRequest.orderReference())
                 .total(orderRequest.total())
                 .paymentMethod(orderRequest.paymentMethod())
                 .build();

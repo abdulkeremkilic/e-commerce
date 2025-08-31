@@ -3,8 +3,10 @@ package org.abdulkerem.ecommerce.service.concretes;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.abdulkerem.ecommerce.client.abstracts.ICustomerClient;
+import org.abdulkerem.ecommerce.client.abstracts.IPaymentClient;
 import org.abdulkerem.ecommerce.client.abstracts.IProductClient;
-import org.abdulkerem.ecommerce.kafka.OrderProducer;
+import org.abdulkerem.ecommerce.model.dto.payment.PaymentRequest;
+import org.abdulkerem.ecommerce.producer.OrderProducer;
 import org.abdulkerem.ecommerce.mapper.CustomerOrderMapper;
 import org.abdulkerem.ecommerce.model.dto.customer.CustomerResponse;
 import org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation;
@@ -26,6 +28,7 @@ public class OrderServiceImpl implements IOrderService {
 
     private final ICustomerClient customerClient;
     private final IProductClient productClient;
+    private final IPaymentClient paymentClient;
     private final OrderProducer orderProducer;
     private final OrderRepository orderRepository;
     private final CustomerOrderMapper customerOrderMapper;
@@ -55,11 +58,19 @@ public class OrderServiceImpl implements IOrderService {
         }
 
         //start payment process
+        paymentClient.requestOrderPayment(
+                PaymentRequest.builder()
+                        .orderId(request.custOrdId())
+                        .orderReference(request.orderReference())
+                        .paymentMethod(request.paymentMethod())
+                        .total(request.total())
+                        .build()
+        );
 
         //send the order confirmation --> notification ms
         orderProducer.sendOrderConfirmation(
                 OrderConfirmation.builder()
-                        .orderReference(request.reference())
+                        .orderReference(request.orderReference())
                         .total(request.total())
                         .customerResponse(customer)
                         .productList(purchasedProductList)

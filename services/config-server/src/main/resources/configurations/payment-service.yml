@@ -1,0 +1,27 @@
+spring:
+  port: 8060
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payment
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: MyHikariPool
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 600000      # 10 dk
+      max-lifetime: 1800000     # 30 dk
+      connection-timeout: 20000 # 20s
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # You can create your own implementation of JsonSerializer and use it.
+      properties:
+        spring.json.type.mapping: paymentConfirmation:org.abdulkerem.ecommerce.model.dto.kafka.PaymentNotificationRequest # producer needs to inform consumer of our topic what objects is being sent

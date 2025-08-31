@@ -22,7 +22,7 @@ import java.util.List;
 public class ProductClientImpl implements IProductClient {
 
     private final ApplicationConfig applicationConfig;
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate; //TODO: Change Rest Template with WebClient
 
     @Override
     public List<PurchaseResponse> purchaseProduct(List<PurchaseRequest> request) {

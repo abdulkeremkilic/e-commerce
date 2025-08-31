@@ -12,7 +12,7 @@ import java.util.List;
 
 public record OrderRequest(
     Long custOrdId,
-    String reference,
+    String orderReference,
     @Positive(message = "Amount should be positive.")
     BigDecimal total,
     @NotNull(message = "Payment method should be precised.")
