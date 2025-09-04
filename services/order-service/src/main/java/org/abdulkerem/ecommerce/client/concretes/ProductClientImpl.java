@@ -6,7 +6,6 @@ import org.abdulkerem.ecommerce.exceptions.BusinessValidationException;
 import org.abdulkerem.ecommerce.model.dto.ApplicationConfig;
 import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseRequest;
 import org.abdulkerem.ecommerce.model.dto.purchase.PurchaseResponse;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

@@ -1,3 +1,12 @@
+server:
+  port: 8011
+
+logging:
+  level:
+    org.springframework.boot.web.embedded.tomcat: INFO
+    org.apache.catalina.core: INFO
+    org.springframework.boot: INFO
+
 spring:
   mail:
     host: localhost
@@ -28,10 +37,11 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: paymentGroup, orderGroup
+      group-id: notificationGroup # Default group (@KafkaListener'da override ediyorsun)
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer # You can create your own implementation of JsonSerializer and use it.
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # You can create your own implementation of JsonSerializer and use it.
       properties:
         spring.json.trusted.packages: "org.abdulkerem.ecommerce.model.dto.kafka" # only accept types in these packages, write "*" if you want to accept every package.
-        spring.json.type.mapping: orderConfirmation:org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation, PaymentNotificationRequest # producer needs to inform consumer of our topic what objects is being sent
+        spring.json.type.mapping.paymentConfirmation: org.abdulkerem.ecommerce.model.dto.kafka.PaymentNotificationRequest
+        spring.json.type.mapping.orderConfirmation: org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation # producer needs to inform consumer of our topic what objects is being sent

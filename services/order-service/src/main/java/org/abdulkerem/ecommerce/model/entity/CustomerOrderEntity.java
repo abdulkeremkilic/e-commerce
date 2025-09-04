@@ -28,7 +28,7 @@ public class CustomerOrderEntity {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
     private String customerId;
-    @OneToMany(mappedBy = "customerOrder")
+    @OneToMany(mappedBy = "customerOrderEntity")
     private List<OrderLineEntity> orderLineList;
     @CreatedDate
     @Column(updatable = false, nullable = false)

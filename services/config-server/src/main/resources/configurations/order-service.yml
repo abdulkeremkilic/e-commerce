@@ -13,7 +13,7 @@ spring:
       connection-timeout: 20000 # 20s
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   kafka:
     producer:
@@ -23,11 +23,11 @@ spring:
       properties:
         spring.json.type.mapping: orderConfirmation:org.abdulkerem.ecommerce.model.dto.kafka.OrderConfirmation # producer needs to inform consumer of our topic what objects is being sent
 
-  server:
-    port: 8070
+server:
+  port: 8070
 
-  application:
-    config:
-      customer-server-url: http://localhost:8222/api/v1/customer
-      product-server-url: http://localhost:8222/api/v1/product
-      payment-server-url: http://localhost:8222/api/v1/payment
+application:
+  config:
+    customer-service-url: http://localhost:8222/api/v1/customer
+    product-service-url: http://localhost:8222/api/v1/product
+    payment-service-url: http://localhost:8222/api/v1/payment

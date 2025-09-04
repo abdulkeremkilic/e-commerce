@@ -1,0 +1,33 @@
+server:
+  port: 8222
+
+cloud:
+  gateway:
+    discovery:
+      locator:
+        enabled: true
+    routes:
+      - id: customer-service
+        uri: lb:http:http://CUSTOMER-SERVICE #lb stands for load balancing.
+        predicates:
+          - Path=/api/v1/customer/**
+
+      - id: order-service
+        uri: lb:http:http://ORDER-SERVICE
+        predicates:
+          - Path=/api/v1/order/**
+
+      - id: order-line-service
+        uri: lb:http:http://ORDER-SERVICE
+        predicates:
+          - Path=/api/v1/order-line/**
+
+      - id: product-service
+        uri: lb:http:http://PRODUCT-SERVICE
+        predicates:
+          - Path=/api/v1/product/**
+
+      - id: payment-service #add a security layer for not exposing payment service
+        uri: lb:http:http://PAYMENT-SERVICE
+        predicates:
+          - Path=/api/v1/payment/**
